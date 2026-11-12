@@ -1,0 +1,19 @@
+
+# Python virtual environment
+venv/
+__pycache__/
+*.py[cod]
+
+# Environment variables and secrets
+.env
+.env.*
+
+# IDE settings
+.vscode/
+
+# Temporary audio recordings
+*.pcm
+*.m4a
+
+# Python testing cache
+.pytest_cache/

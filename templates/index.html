@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech to Text | Procucev Assignment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <h1>Speech to Text</h1>
+        <a href="/dashboard">Transcription History</a>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2>Real-Time Speech Transcription</h2>
+            <p class="subtitle">Speak naturally and see your words appear.</p>
+
+            <label for="language">Recognition language</label>
+            <select id="language">
+                <option value="none">Automatic multilingual detection</option>
+            </select>
+
+            <div class="controls">
+                <button id="startBtn" class="primary">Start Listening</button>
+                <button id="stopBtn" class="secondary" disabled>Stop</button>
+            </div>
+
+            <p id="status" role="status">Ready to listen</p>
+
+            <label for="transcript">Your transcription</label>
+            <textarea id="transcript" rows="8"
+                placeholder="Your spoken words will appear here..."></textarea>
+
+            <label for="title">Transcription title</label>
+            <input id="title" type="text"
+                placeholder="e.g. My meeting notes">
+
+            <div class="controls">
+                <button id="saveBtn" class="primary">Save Transcription</button>
+                <button id="clearBtn" class="secondary">Clear Text</button>
+            </div>
+
+            <p id="message" role="status"></p>
+             
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
