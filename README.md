@@ -160,6 +160,22 @@ Open your browser and visit:
 http://127.0.0.1:5000/
 ```
 
+
+## Application Screenshots
+
+### Home Page - Real-Time Speech Transcription
+
+![Home Page](screenshots/home.png)
+
+### Transcription History Dashboard
+
+![Transcription History](screenshots/history.png)
+
+### Edit Transcription
+
+![Edit Transcription](screenshots/edit.png)
+
+
 ## Application Modules
 
 ### 1. Real-Time Speech Transcription
