@@ -20,12 +20,26 @@ app = Flask(__name__)
 sock = Sock(app)
 
 
+# def get_db_connection():
+#     return mysql.connector.connect(
+#         host=os.getenv("DB_HOST"),
+#         user=os.getenv("DB_USER"),
+#         password=os.getenv("DB_PASSWORD"),
+#         database=os.getenv("DB_NAME")
+#     )
+
 def get_db_connection():
     return mysql.connector.connect(
         host=os.getenv("DB_HOST"),
+        port=int(os.getenv("DB_PORT", 4000)),
         user=os.getenv("DB_USER"),
         password=os.getenv("DB_PASSWORD"),
-        database=os.getenv("DB_NAME")
+        database=os.getenv("DB_NAME"),
+        ssl_ca=os.path.join(
+            os.path.dirname(__file__),
+            "tidb-ca.pem"
+        ),
+        ssl_verify_cert=True
     )
 
 
@@ -38,20 +52,40 @@ def dashboard():
     return render_template("dashboard.html")
 
 
+# @app.route("/test-db")
+# def test_db():
+#     try:
+#         connection = get_db_connection()
+#         connection.close()
+#         return jsonify({
+#             "success": True,
+#             "message": "MySQL connected successfully!"
+#         })
+#     except mysql.connector.Error as error:
+#         app.logger.exception("Database connection failed")
+#         return jsonify({
+#             "success": False,
+#             "message": "Database connection failed."
+#         }), 500
+
 @app.route("/test-db")
 def test_db():
     try:
         connection = get_db_connection()
         connection.close()
+
         return jsonify({
             "success": True,
-            "message": "MySQL connected successfully!"
+            "message": "TiDB connected successfully!"
         })
+
     except mysql.connector.Error as error:
         app.logger.exception("Database connection failed")
+
         return jsonify({
             "success": False,
-            "message": "Database connection failed."
+            "error_type": type(error).__name__,
+            "message": str(error)
         }), 500
 
 
