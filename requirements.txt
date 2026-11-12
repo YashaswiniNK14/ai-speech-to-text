@@ -4,3 +4,5 @@ python-dotenv
 websockets
 flask-sock
 websocket-client
+simple-websocket
+gunicorn
